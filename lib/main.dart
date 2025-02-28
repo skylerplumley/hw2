@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: new ThemeData(scaffoldBackgroundColor: Colors.pink[50]),
       debugShowCheckedModeBanner: false,
       title: 'Calculator App',
       home: MyHomePage(),
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.grey,
         title: Text('Calculator'),
       ),
       body: Column(
@@ -74,9 +75,12 @@ class _MyHomePageState extends State<MyHomePage> {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(3),
-                child: ElevatedButton(
+                child: TextButton(
                   onPressed: () => buttonpress(buttons[index]),
-                  child: Text(buttons[index]),
+                  child: Text(
+                    buttons[index],
+                    style: TextStyle(fontSize: 22, color: Colors.black),
+                  ),
                 ),
               );
             },
