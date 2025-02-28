@@ -47,12 +47,25 @@ class _MyHomePageState extends State<MyHomePage> {
     '/'
   ];
 
-  void buttonpress(String value) {}
+  void buttonpress(String key) {
+    setState(() {
+      if (key == 'C') {
+        userinput = 'Cleared';
+        result = 'Cleared';
+      } else if (key == '=') {
+        calcresult();
+      } else {
+        userinput += key;
+      }
+    });
+  }
+
+  void calcresult() {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.pink[200],
         title: Text('Calculator'),
       ),
       body: Column(
