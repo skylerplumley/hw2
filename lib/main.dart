@@ -50,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void buttonpress(String key) {
     setState(() {
       if (key == 'C') {
-        userinput = 'Cleared';
-        result = 'Cleared';
+        userinput = '';
+        result = '';
       } else if (key == '=') {
         calcresult();
       } else {
@@ -60,7 +60,17 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void calcresult() {}
+  void calcresult() {
+    Parser parser = Parser();
+    Expression exp = parser.parse(userinput);
+    ContextModel context = ContextModel();
+    double evaluation = exp.evaluate(EvaluationType.REAL, context);
+    result = evaluation.toString();
+    if (result == 'Infinity') {
+      result = 'Error';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(16),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(userinput, style: TextStyle(fontSize: 24)),
+                    Text(result, style: TextStyle(fontSize: 28)),
+                  ],
                 )),
           ),
           GridView.builder(
