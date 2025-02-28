@@ -24,22 +24,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String userinput = '';
+  String result = '';
+
   final List<String> buttons = [
     '0',
     '1',
     '2',
+    '+',
     '3',
     '4',
     '5',
+    '-',
     '6',
     '7',
     '8',
-    '9',
-    '+',
-    '-',
     '*',
-    '/',
-    'C'
+    '9',
+    'C',
+    '=',
+    '/'
   ];
 
   void buttonpress(String value) {}
@@ -61,14 +65,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 )),
           ),
           GridView.builder(
+            shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
-              childAspectRatio: 2,
+              childAspectRatio: 4,
             ),
             itemCount: buttons.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.all(3),
                 child: ElevatedButton(
                   onPressed: () => buttonpress(buttons[index]),
                   child: Text(buttons[index]),
