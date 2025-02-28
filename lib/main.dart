@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
     double evaluation = exp.evaluate(EvaluationType.REAL, context);
     result = evaluation.toString();
     if (result == 'Infinity') {
-      result = 'Error';
+      result = 'Divide by 0 Error';
     }
   }
 
@@ -87,8 +87,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(userinput, style: TextStyle(fontSize: 24)),
-                    Text(result, style: TextStyle(fontSize: 28)),
+                    Text(userinput,
+                        style:
+                            TextStyle(fontSize: 28, color: Colors.pink[600])),
+                    Text(result,
+                        style:
+                            TextStyle(fontSize: 28, color: Colors.pink[600])),
                   ],
                 )),
           ),
@@ -96,17 +100,17 @@ class _MyHomePageState extends State<MyHomePage> {
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
-              childAspectRatio: 4,
+              childAspectRatio: 5,
             ),
             itemCount: buttons.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.all(3),
+                padding: const EdgeInsets.all(4),
                 child: TextButton(
                   onPressed: () => buttonpress(buttons[index]),
                   child: Text(
                     buttons[index],
-                    style: TextStyle(fontSize: 22, color: Colors.black),
+                    style: TextStyle(fontSize: 22, color: Colors.pink[600]),
                   ),
                 ),
               );
